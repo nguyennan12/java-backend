@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 .settings
 target
 .classpath
 .project
+=======
+/target/
+.classpath
+.settings
+.project
+target
+>>>>>>> project2
