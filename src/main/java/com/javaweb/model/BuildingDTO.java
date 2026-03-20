@@ -8,9 +8,17 @@ public class BuildingDTO {
 	private String managerPhoneNumber;
 	private Long floorArea;
 	private Long rentPrice;
+	private String rentAreas;
 	private String serviceFee;
 	private String brokerageFee;
 	
+	
+	public String getRentAreas() {
+		return rentAreas;
+	}
+	public void setRentAreas(String rentAreas) {
+		this.rentAreas = rentAreas;
+	}
 	public String getManagerName() {
 		return managerName;
 	}
