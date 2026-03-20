@@ -13,14 +13,13 @@ import org.springframework.stereotype.Repository;
 
 import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.entity.BuildingEntity;
+import com.javaweb.utils.ConnectionJDBCUtil;
 import com.javaweb.utils.NumberUtils;
 import com.javaweb.utils.StringUtils;
 
 @Repository
 public class BuildingRepositoryImpl implements BuildingRepository {
-    static final String url = "jdbc:mysql://localhost:3306/building?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-    static final String user = "root";
-    static final String pass = "Nann_1204";
+   
     
     public static void joinTable(Map<String, Object> params, List<String> typeCode, StringBuilder sql) {
     	String staffId = (String)params.get("staffId");
@@ -94,7 +93,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
     
 	@Override
 	public List<BuildingEntity> findAll(Map<String, Object> params, List<String> typeCode) {
-		 StringBuilder sql = new  StringBuilder("SELECT b.building_name, b.ward,"
+		 StringBuilder sql = new  StringBuilder("SELECT b.id, b.building_name, b.ward,"
 		 		+ " b.street, b.district_id, b.number_of_basement, b.manager_name,"
 		 		+ " b.manager_phone_number,b.rent_price,"
 		 		+ " b.floor_area, b.service_fee, b.brokerage_fee FROM buildings b ");
@@ -107,12 +106,13 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 		 sql.append(" GROUP BY b.id;");
 	        List<BuildingEntity> result = new ArrayList<>();
 	        try (
-	            Connection conn = DriverManager.getConnection(url, user, pass);
+	            Connection conn = ConnectionJDBCUtil.getConnection();
 	            Statement stmt = conn.createStatement();
 	            ResultSet rs = stmt.executeQuery(sql.toString());) {
 	        	
 	        	while(rs.next()){
 	        		BuildingEntity building = new BuildingEntity();
+	        		building.setId(rs.getLong("b.id"));
 	                building.setName(rs.getString("b.building_name"));
 	                building.setStreet(rs.getString("b.street"));
 	                building.setWard(rs.getString("b.ward"));
@@ -123,7 +123,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 	                building.setServiceFee(rs.getString("b.service_fee"));
 	                building.setBrokerageFee(rs.getString("b.brokerage_fee"));
 	                building.setManagerName(rs.getString("b.manager_name"));
-	                building.setMamagerNumberPhone(rs.getString("b.manager_phone_number"));
+	                building.setManagerPhoneNumber(rs.getString("b.manager_phone_number"));
 	                result.add(building);
 	        	}
 	            

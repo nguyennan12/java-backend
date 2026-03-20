@@ -9,11 +9,19 @@ public class BuildingEntity {
 	private Long districtId;
 	private Long floorArea;
 	private Long rentPrice;
+	private Long rentArea;
 	private String serviceFee;
 	private String brokerageFee;
 	private String managerName;;
-	private String mamagerNumberPhone;
+	private String managerPhoneNumber;
 	
+	
+	public Long getRentArea() {
+		return rentArea;
+	}
+	public void setRentArea(Long rentArea) {
+		this.rentArea = rentArea;
+	}
 	public Long getFloorArea() {
 		return floorArea;
 	}
@@ -44,11 +52,12 @@ public class BuildingEntity {
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
 	}
-	public String getMamagerNumberPhone() {
-		return mamagerNumberPhone;
+	
+	public String getManagerPhoneNumber() {
+		return managerPhoneNumber;
 	}
-	public void setMamagerNumberPhone(String mamagerNumberPhone) {
-		this.mamagerNumberPhone = mamagerNumberPhone;
+	public void setManagerPhoneNumber(String managerPhoneNumber) {
+		this.managerPhoneNumber = managerPhoneNumber;
 	}
 	public Long getId() {
 		return id;
