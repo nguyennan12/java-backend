@@ -30,11 +30,6 @@ public class BuildingRepositoryImpl implements BuildingRepository {
     		sql.append(" INNER JOIN building_rent_types brt ON b.id = brt.building_id ");
     		sql.append("INNER JOIN rent_types rt ON rt.id = brt.rent_type_id");
     	}
-    	String rentAreaTo = (String)params.get("rentAreaTo");
-    	String rentAreaFrom = (String)params.get("rentAreaFrom");
-    	if(StringUtils.checkString(rentAreaTo)|| StringUtils.checkString(rentAreaFrom)) {
-    		sql.append(" INNER JOIN rent_areas ra ON b.id = ra.building_id ");
-    	}
     }
     
     public static void queryNormal(Map<String, Object> params, List<String> typeCode, StringBuilder where) {
@@ -63,12 +58,14 @@ public class BuildingRepositoryImpl implements BuildingRepository {
     	String rentAreaTo = (String)params.get("rentAreaTo");
     	String rentAreaFrom = (String)params.get("rentAreaFrom");
     	if(StringUtils.checkString(rentAreaTo)|| StringUtils.checkString(rentAreaFrom)) {
+    		where.append(" AND EXISTS (SELECT * FROM rent_areas ra WHERE b.id = ra.building_id");
     		if(StringUtils.checkString(rentAreaTo)) {
     			where.append(" AND ra.value <= " + rentAreaTo);
     		}
     		else {
     			where.append(" AND ra.value >= " + rentAreaFrom);
     		}
+    		where.append(" ) ");
     	}
     	
     	String rentPriceTo = (String)params.get("rentPriceTo");
