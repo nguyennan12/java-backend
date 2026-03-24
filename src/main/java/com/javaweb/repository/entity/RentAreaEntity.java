@@ -1,9 +1,36 @@
 package com.javaweb.repository.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "rent_areas")
 public class RentAreaEntity {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "value")
 	private Long value;
-	private String building_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "building_id")
+	private BuildingEntity building;
+	
+	
+	public BuildingEntity getBuilding() {
+		return building;
+	}
+	public void setBuilding(BuildingEntity building) {
+		this.building = building;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -16,12 +43,5 @@ public class RentAreaEntity {
 	public void setValue(Long value) {
 		this.value = value;
 	}
-	public String getBuilding_id() {
-		return building_id;
-	}
-	public void setBuilding_id(String building_id) {
-		this.building_id = building_id;
-	}
-	
 	
 }
