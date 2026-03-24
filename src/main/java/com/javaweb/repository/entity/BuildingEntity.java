@@ -3,16 +3,7 @@ package com.javaweb.repository.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="building")
@@ -59,7 +50,8 @@ public class BuildingEntity {
 	@OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
 	private List<RentAreaEntity> rentAreas = new ArrayList<>();
 
-	
+	@ManyToMany(mappedBy ="buildings", fetch = FetchType.LAZY)
+	private List<RentTypeEntity> rentTypes = new ArrayList<>();
 	public List<RentAreaEntity> getRentAreas() {
 		return rentAreas;
 	}
