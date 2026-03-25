@@ -4,6 +4,9 @@ public class BuildingDTO {
 	private String name;
 	private Integer numberOfBasement;
 	private String address;
+	private String street;
+	private String ward;
+	private Long districtId;
 	private String managerName;
 	private String managerPhoneNumber;
 	private Long floorArea;
@@ -13,6 +16,26 @@ public class BuildingDTO {
 	private String brokerageFee;
 	
 	
+	
+	
+	public Long getDistrictId() {
+		return districtId;
+	}
+	public void setDistrictId(Long districtId) {
+		this.districtId = districtId;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getWard() {
+		return ward;
+	}
+	public void setWard(String ward) {
+		this.ward = ward;
+	}
 	public String getRentAreas() {
 		return rentAreas;
 	}

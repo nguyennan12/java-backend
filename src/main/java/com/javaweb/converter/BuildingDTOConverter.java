@@ -13,6 +13,7 @@ import com.javaweb.repository.RentAreaRepository;
 import com.javaweb.repository.entity.BuildingEntity;
 import com.javaweb.repository.entity.DistrictEntity;
 import com.javaweb.repository.entity.RentAreaEntity;
+import com.javaweb.utils.StringUtils;
 
 @Component
 public class BuildingDTOConverter {
@@ -26,19 +27,27 @@ public class BuildingDTOConverter {
 	private ModelMapper modelMapper;
 	
 	public BuildingDTO toBuildingDTO(BuildingEntity item) {
-		//set basic data
 		BuildingDTO building = modelMapper.map(item, BuildingDTO.class);
-		
-		//set address
-		building.setAddress(item.getStreet() + ", " + item.getWard() + ", " + item.getDistrict().getName());
-		
-		//set rent area
-		List<RentAreaEntity> rentAreaEntity = item.getRentAreas();
-		String rentAreasString = rentAreaEntity.stream()
-		        .map(area -> area.getValue().toString()) 
-		        .collect(Collectors.joining(", ")); 
-		building.setRentAreas(rentAreasString);
-		
-		return building;
+
+     
+        StringBuilder address = new StringBuilder("");
+        if (StringUtils.checkString(item.getStreet())) address.append(item.getStreet());
+        if (StringUtils.checkString(item.getWard())) address.append(", ").append(item.getWard());
+        
+        if (item.getDistrict() != null) {
+            address.append(", ").append(item.getDistrict().getName());
+        }
+        building.setAddress(address.toString());
+
+       
+        List<RentAreaEntity> rentAreas = item.getRentAreas();
+        if (rentAreas != null && !rentAreas.isEmpty()) {
+            String rentAreasString = rentAreas.stream()
+                    .map(area -> area.getValue().toString())
+                    .collect(Collectors.joining(", "));
+            building.setRentAreas(rentAreasString);
+        }
+
+        return building;
 	}
 }
