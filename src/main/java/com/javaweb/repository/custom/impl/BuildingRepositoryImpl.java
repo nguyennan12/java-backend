@@ -8,13 +8,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import jakarta.persistence.Query;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.javaweb.builder.BuildingSearchBuilder;
-import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.custom.BuildingRepositoryCustom;
-import com.javaweb.repository.entity.BuildingEntity;
+import com.javaweb.model.BuildingEntity;
 import com.javaweb.utils.StringUtils;
 
 @Repository

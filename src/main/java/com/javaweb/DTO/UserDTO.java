@@ -1,6 +1,4 @@
-package com.javaweb.model;
-
-import jakarta.persistence.Column;
+package com.javaweb.DTO;
 
 public class UserDTO {
 
@@ -15,6 +13,16 @@ public class UserDTO {
     private String status;
 
     private String email;
+
+    private Long roleId;
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
 
     public String getEmail() {
         return email;

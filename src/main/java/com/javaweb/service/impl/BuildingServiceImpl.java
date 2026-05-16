@@ -3,7 +3,6 @@ package com.javaweb.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.javaweb.builder.BuildingSearchBuilder;
 import com.javaweb.converter.BuildingDTOConverter;
 import com.javaweb.converter.BuildingSearchBuilderConverter;
-import com.javaweb.model.BuildingDTO;
+import com.javaweb.DTO.BuildingDTO;
 import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.DistrictRepository;
-import com.javaweb.repository.RentAreaRepository;
-import com.javaweb.repository.entity.BuildingEntity;
-import com.javaweb.repository.entity.DistrictEntity;
-import com.javaweb.repository.entity.RentAreaEntity;
+import com.javaweb.model.BuildingEntity;
+import com.javaweb.model.DistrictEntity;
 import com.javaweb.service.BuildingService;
 
 @Service

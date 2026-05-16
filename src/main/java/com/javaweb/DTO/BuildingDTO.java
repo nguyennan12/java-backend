@@ -1,4 +1,4 @@
-package com.javaweb.model;
+package com.javaweb.DTO;
 
 public class BuildingDTO {
 	private String name;

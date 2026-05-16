@@ -1,4 +1,8 @@
-package com.javaweb.repository.custom;
+package com.javaweb.repository;
 
-public interface RoleRepository {
+import com.javaweb.model.RoleEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
+    RoleEntity findRoleEntitiesBy
 }

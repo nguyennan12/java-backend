@@ -5,8 +5,7 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.javaweb.model.BuildingDTO;
-import com.javaweb.repository.entity.BuildingEntity;
+import com.javaweb.DTO.BuildingDTO;
 
 public interface BuildingService {
 	List<BuildingDTO> findAll(Map<String, Object> params, List<String> typeCode);
